@@ -1,14 +1,11 @@
 import PyPDF2
- 
-pdffileobj=open('2022.1.pdf','rb')
 
-pdfreader=PyPDF2.PdfFileReader(pdffileobj)
+arquivo = open('2022.1.pdf', 'rb')
+lerPDF  = PyPDF2.PdfFileReader(arquivo)
+pageObj = lerPDF.getPage(1)
+texto   = pageObj.extractText()
+arquivo.close()
 
-x=pdfreader.numPages
-
-pageobj=pdfreader.getPage(x+1)
-
-text=pageobj.extract_text()
- 
-file1=open(r"lorem.txt","a")
-file1.writelines(text)
+file1=open(r"Arquivo_TXT.txt","a")
+file1.writelines(texto)
+file1.close()
