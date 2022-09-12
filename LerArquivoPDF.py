@@ -1,6 +1,11 @@
 import PyPDF2, re
+from collections import defaultdict
 
-def mostrar_Todos_Os_Nomes(arquivo):
+def mostrar_Todos_Os_Nomes():
+    with open('Arquivo_TXT.txt', 'r', encoding='utf-8') as txt:
+        arquivo = txt.readlines()
+        txt.close()
+
     lista_Temporaria = []
     for alterar in range(len(arquivo)):
         if 'Página' in arquivo[alterar]:
@@ -30,35 +35,43 @@ def mostrar_Todos_Os_Nomes(arquivo):
     except:
         print("Oops! existe um erro")
 
-def print_Arquivo_Terminal(arq_PDF, number_of_pages):
+def print_Arquivo_Terminal():
+    with open('Arquivo_TXT.txt', 'r', encoding='utf-8') as printTerminal:
+        mostrar_Na_Tela = printTerminal.readlines()
+        printTerminal.close()
+    for tela in mostrar_Na_Tela:
+        print(tela.replace('\n', ''))
+
+def converter_PDF_para_TXT():
+    arq_PDF = PyPDF2.PdfReader('2022.1.pdf', 'rb')
+    number_of_pages = len(arq_PDF.pages)
+    arq_TXT = []
     for c in range(0, number_of_pages):
-        pag  = arq_PDF.pages[c]
-        text = pag.extract_text()
-        print(text)
+        arq_PDF   = open('2022.1.pdf', 'rb')
+        readerPDF = PyPDF2.PdfFileReader(arq_PDF)
+        pageObj   = readerPDF.getPage(c)
+        text      = pageObj.extractText()
+        arq_PDF.close()
 
-arq_PDF = PyPDF2.PdfReader('2022.1.pdf', 'rb')
-number_of_pages = len(arq_PDF.pages)
+        arq_TXT = open(r"Arquivo_TXT.txt","a")
+        arq_TXT.writelines(text)
+        arq_TXT.close()
 
-for c in range(0, number_of_pages):
-    arq_PDF   = open('2022.1.pdf', 'rb')
-    readerPDF = PyPDF2.PdfFileReader(arq_PDF)
-    pageObj   = readerPDF.getPage(c)
-    text      = pageObj.extractText()
-    arq_PDF.close()
+    with open('Arquivo_TXT.txt', 'r', encoding='utf-8') as txt:
+        arquivo = txt.readlines()
+        txt.close()
 
-    arq_TXT = open(r"Arquivo_TXT.txt","a")
-    arq_TXT.writelines(text)
-    arq_TXT.close()
+def quantidade_Vezes_Professores():
+    with open('NomesProfessores.txt', 'r', encoding='utf-8') as arquivo:
+        arquivo = arquivo.readlines()
 
+    dicionario = defaultdict(int) 
+    for c in arquivo:
+        dicionario[c] += 1
 
-with open('Arquivo_TXT.txt', 'r', encoding='utf-8') as arquivo:
-    arquivo = arquivo.readlines()
+    for k, v in dicionario.items():
+        print(k.replace('\n', '') , '\033[1;31m aparece:\033[m' , v,)
 
-
-
-
-
-
-mostrar_Todos_Os_Nomes(arquivo)
+quantidade_Vezes_Professores()
 
 

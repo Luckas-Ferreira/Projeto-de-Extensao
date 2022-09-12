@@ -1,6 +1,9 @@
-lista = ['ACURCIO CASTELO DAVID', 'ADEMARIA APARECIDA DE SOUZA', 'ADRIANO CESAR ROSA DA COSTA' ]
+noDuplicatas   = ['ACURCIO CASTELO DAVID', 'ADEMARIA APARECIDA DE SOUZA', 'ADRIANO CESAR ROSA DA COSTA' ]
+withDuplicatas = ['ACURCIO CASTELO DAVID', 'ACURCIO CASTELO DAVID', 'ACURCIO CASTELO DAVID', 'ADEMARIA APARECIDA DE SOUZA', 'ADRIANO CESAR ROSA DA COSTA', 'ADRIANO CESAR ROSA DA COSTA' ]
+from collections import defaultdict
 
-for nome in range(len(lista)):
 
-    print(f'{lista[nome]} aparece {ista.count(lista[nome])}')
+
+
     
+quantidade_Vezes_Professores()
