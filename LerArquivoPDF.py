@@ -73,5 +73,3 @@ def quantidade_Vezes_Professores():
         print(k.replace('\n', '') , '\033[1;31m aparece:\033[m' , v,)
 
 quantidade_Vezes_Professores()
-
-
