@@ -9,4 +9,16 @@ for alterar in range(len(lista)):
         lista_Temporaria.append(lista[alterar])
 
 
-print(lista_Temporaria)
+
+
+# containing string = 'ber'
+try:
+    with open('NomesProfessores.txt', 'r') as fr:
+        lines = fr.readlines()
+  
+        with open('NomesProfessores.txt', 'w') as fw:
+            for line in lines:
+                if line.find(':') == -1:
+                    fw.write(line)
+except:
+    print("Oops! existe um erro")
