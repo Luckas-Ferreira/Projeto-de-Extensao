@@ -1,39 +1,28 @@
 from collections import defaultdict
-
-def quantidade_Vezes_Professores():
+import re
+def Nome_e_Disciplinas():
     with open('NomesProfessores.txt', 'r', encoding='utf-8') as arquivo1:
         professor = arquivo1.readlines()
         arquivo1.close()
 
-    with open('NomeDisciplina.txt', 'r', encoding='utf-8') as arquivo2:
+    with open('NomesDisciplina.txt', 'r', encoding='utf-8') as arquivo2:
         disciplina = arquivo2.readlines()
         arquivo2.close()
-
-    #nome = ['ACURCIO CASTELO DAVID']
-    #disciplina = ['A TEORIAS ORGANIZACIONAIS I']
-
-    merged_list = list(zip(professor, disciplina))  
-
-
-    s = [('rome', 1), ('paris', 2), ('paris', 'gato'), ('newyork', 3), ('paris', 4), ('delhi', 1)]
-    d = defaultdict(list)
-    for k, v in merged_list:
-        d[k].append(v)
-    sorted(d.items())
     
-    for teste in range(0, len(d)):
-        print(d)
+    teste = ['loren\n', 'gatos\n']
+    for banda in teste:
+        #ba = banda.rstrip('\n')
+        print(banda)
 
+    juntar_Listas = list(zip(professor, disciplina))  
 
-
-    key_list = ['name', 'age', 'address']
-    value_list = ['Johnny', '27', 'New York']
-
-    dict_from_list = {}
-    for key in key_list:
-        for value in value_list:
-            dict_from_list[key] = value
-            break
-
-    #print(dict_from_list)
-quantidade_Vezes_Professores()
+    Lista_Final = defaultdict(list)
+    for k, v in juntar_Listas:
+        Lista_Final[k].append(v)
+    sorted(Lista_Final.items())
+    
+    for k, v in Lista_Final.items():
+        pass
+    #print()
+        
+Nome_e_Disciplinas()

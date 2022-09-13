@@ -28,5 +28,16 @@ def mostrar_Todas_Disciplinas():
     NomeDisciplica.writelines(lista_Completa)
     NomeDisciplica.close()
     print(lista_Completa)
+    
+    try:
+        with open('NomeDisciplina.txt', 'r') as fr:
+            lines = fr.readlines()
+    
+            with open('NomeDisciplina.txt', 'w') as fw:
+                for line in lines:
+                    if line.find(':') == -1:
+                        fw.write(line)
+    except:
+        print("Oops! existe um erro")
 
 mostrar_Todas_Disciplinas()
