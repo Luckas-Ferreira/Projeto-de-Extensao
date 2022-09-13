@@ -9,17 +9,23 @@ def quantidade_Vezes_Professores():
         disciplina = arquivo2.readlines()
         arquivo2.close()
 
-    nome = ['ACURCIO CASTELO DAVID']
-    disciplina = ['A TEORIAS ORGANIZACIONAIS I']
+    #nome = ['ACURCIO CASTELO DAVID']
+    #disciplina = ['A TEORIAS ORGANIZACIONAIS I']
+
+    merged_list = list(zip(professor, disciplina))  
+
 
     s = [('rome', 1), ('paris', 2), ('paris', 'gato'), ('newyork', 3), ('paris', 4), ('delhi', 1)]
     d = defaultdict(list)
-    for k, v in s:
+    for k, v in merged_list:
         d[k].append(v)
     sorted(d.items())
-   
-    print(d)
     
+    for teste in range(0, len(d)):
+        print(d)
+
+
+
     key_list = ['name', 'age', 'address']
     value_list = ['Johnny', '27', 'New York']
 

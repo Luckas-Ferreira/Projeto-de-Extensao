@@ -1,7 +1,7 @@
 import PyPDF2, re
 from collections import defaultdict
 
-def mostrar_Todos_Os_Nomes():
+def mostrar_Todas_Disciplinas():
     with open('Arquivo_TXT.txt', 'r', encoding='utf-8') as txt:
         arquivo = txt.readlines()
         txt.close()
@@ -72,4 +72,4 @@ def quantidade_Vezes_Professores():
     for k, v in dicionario.items():
         print(k.replace('\n', '') , '\033[1;31m aparece:\033[m' , v,)
 
-quantidade_Vezes_Professores()
+mostrar_Todas_Disciplinas()
