@@ -1,4 +1,3 @@
-
 def mostrar_Todas_Disciplinas():
     with open('Arquivo_TXT.txt', 'r', encoding='utf-8') as txt:
         arquivo = txt.readlines()
