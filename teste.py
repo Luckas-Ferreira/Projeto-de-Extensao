@@ -8,21 +8,17 @@ def Nome_e_Disciplinas():
     with open('NomesDisciplina.txt', 'r', encoding='utf-8') as arquivo2:
         disciplina = arquivo2.readlines()
         arquivo2.close()
-    
-    teste = ['loren\n', 'gatos\n']
-    for banda in teste:
-        #ba = banda.rstrip('\n')
-        print(banda)
 
     juntar_Listas = list(zip(professor, disciplina))  
 
     Lista_Final = defaultdict(list)
     for k, v in juntar_Listas:
-        Lista_Final[k].append(v)
+        Lista_Final[k.strip()].append(v)
     sorted(Lista_Final.items())
     
     for k, v in Lista_Final.items():
-        pass
-    #print()
+        for disciplina in v:
+            print(disciplina)
+        
         
 Nome_e_Disciplinas()
