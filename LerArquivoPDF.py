@@ -173,6 +173,4 @@ def Nome_e_Carga_Horaria():
         numero = []
         for horas in v:
             numero.append(int(horas))
-        print(f'Dados Separados/Carga Horaria Total - {sum(numero)} Horas')
-
-Nome_e_Carga_Horaria()
+        print(f'Carga Horaria Total - {sum(numero)} Horas')
