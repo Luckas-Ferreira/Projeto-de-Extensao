@@ -19,16 +19,16 @@ def mostrar_Todos_Professores():
         if 'Vagas Oferecidas' in lista_Temporaria[nome]:
             lista_Completa.append(lista_Temporaria[nome -1])
         
-    NomesProfessores = open(r"NomesProfessores.txt","w")
+    NomesProfessores = open(r"Dados Separados/NomesProfessores.txt","w")
     NomesProfessores.writelines(lista_Completa)
     NomesProfessores.close()
 
 
     try:
-        with open('NomesProfessores.txt', 'r') as fr:
+        with open('Dados Separados/NomesProfessores.txt', 'r') as fr:
             lines = fr.readlines()
     
-            with open('NomesProfessores.txt', 'w') as fw:
+            with open('Dados Separados/NomesProfessores.txt', 'w') as fw:
                 for line in lines:
                     if line.find(':') == -1:
                         fw.write(line)
@@ -50,7 +50,7 @@ def mostra_Carga_Horaria():
         if 'horas' in remover:
             lista_Completa.append(remover.replace('horas', ''))
 
-    Carga_Horaria = open(r"CargaHoraria.txt","w")
+    Carga_Horaria = open(r"Dados Separados/CargaHoraria.txt","w")
     Carga_Horaria.writelines(lista_Completa)
     Carga_Horaria.close()
     
@@ -67,14 +67,14 @@ def mostrar_Todas_Disciplinas():
                 troca = arquivoCompleto[disciplinas].replace('- ', '\n', 1)
                 lista_Temporaria.append(troca)
 
-    NomeDisciplica = open(r"NomesDisciplina.txt","w")
+    NomeDisciplica = open(r"Dados Separados/NomesDisciplina.txt","w")
     NomeDisciplica.writelines(lista_Temporaria)
     NomeDisciplica.close()
 
     try:
-        with open('NomesDisciplina.txt', 'r') as fr:
+        with open('Dados Separados/NomesDisciplina.txt', 'r') as fr:
             lines = fr.readlines()
-            with open('NomesDisciplina.txt', 'w') as fw:
+            with open('Dados Separados/NomesDisciplina.txt', 'w') as fw:
                 for line in lines:
                     if line.find('Vagas Ocupadas:') == -1:
                         fw.write(line)
@@ -108,7 +108,8 @@ def converter_PDF_para_TXT():
         txt.close()
 
 def quantidade_Vezes_Professores():
-    with open('NomesProfessores.txt', 'r', encoding='utf-8') as arquivo:
+    mostrar_Todos_Professores()
+    with open('Dados Separados/NomesProfessores.txt', 'r', encoding='utf-8') as arquivo:
         arquivo = arquivo.readlines()
 
     dicionario = defaultdict(int) 
@@ -119,11 +120,13 @@ def quantidade_Vezes_Professores():
         print(k.replace('\n', '') , '\033[1;31m aparece:\033[m' , v,)
 
 def Nome_e_Disciplinas():
-    with open('NomesProfessores.txt', 'r', encoding='utf-8') as arquivo1:
+    mostrar_Todos_Professores()
+    mostrar_Todas_Disciplinas()
+    with open('Dados Separados/NomesProfessores.txt', 'r', encoding='utf-8') as arquivo1:
         professor = arquivo1.readlines()
         arquivo1.close()
 
-    with open('NomesDisciplina.txt', 'r', encoding='utf-8') as arquivo2:
+    with open('Dados Separados/NomesDisciplina.txt', 'r', encoding='utf-8') as arquivo2:
         disciplina = arquivo2.readlines()
         arquivo2.close()
 
@@ -138,4 +141,38 @@ def Nome_e_Disciplinas():
         print(f'\n\033[1;31m{k}:\033[m ', end='')
         for disciplina in v:
             print(disciplina.strip('\n'), end=', ')
-Nome_e_Disciplinas()
+
+
+def Nome_e_Carga_Horaria():
+    mostrar_Todos_Professores()
+    mostra_Carga_Horaria()
+    with open('Dados Separados/NomesProfessores.txt', 'r', encoding='utf-8') as arquivo1:
+        professor = arquivo1.readlines()
+        arquivo1.close()
+
+    with open('Dados Separados/CargaHoraria.txt', 'r', encoding='utf-8') as arquivo2:
+        horas = arquivo2.readlines()
+        arquivo2.close()
+
+
+    juntar_Listas = list(zip(professor, horas))
+    lista_Temporaria = defaultdict(list)
+    Lista_Final = []
+    for k, v in juntar_Listas:
+        lista_Temporaria[k.strip()].append(v)
+    sorted(lista_Temporaria.items())
+    
+    def soma(numero):
+        contado = 0
+        for i in numero:
+            contado += i
+        return contado
+    
+    for k, v in lista_Temporaria.items():
+        print(f'\n\033[1;31m{k}:\033[m', end=' ')
+        numero = []
+        for horas in v:
+            numero.append(int(horas))
+        print(f'Dados Separados/Carga Horaria Total - {sum(numero)} Horas')
+
+Nome_e_Carga_Horaria()
