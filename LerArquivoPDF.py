@@ -174,3 +174,5 @@ def Nome_e_Carga_Horaria():
         for horas in v:
             numero.append(int(horas))
         print(f'Carga Horaria Total - {sum(numero)} Horas')
+
+converter_PDF_para_TXT()
