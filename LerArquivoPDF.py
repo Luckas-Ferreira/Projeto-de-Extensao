@@ -1,7 +1,7 @@
 import PyPDF2, re
 from collections import defaultdict
 
-def mostrar_Todas_Disciplinas():
+def mostrar_Todos_Professores():
     with open('Arquivo_TXT.txt', 'r', encoding='utf-8') as txt:
         arquivo = txt.readlines()
         txt.close()
@@ -31,6 +31,52 @@ def mostrar_Todas_Disciplinas():
             with open('NomesProfessores.txt', 'w') as fw:
                 for line in lines:
                     if line.find(':') == -1:
+                        fw.write(line)
+    except:
+        print("Oops! existe um erro")
+
+def mostra_Carga_Horaria():
+    with open('Arquivo_TXT.txt', 'r', encoding='utf-8') as txt:
+        arquivoCompleto = txt.readlines()
+        txt.close()
+
+    lista_Temporaria = []
+    lista_Completa = []
+    for horas in arquivoCompleto:
+        if 'CH:' in horas:
+            lista_Temporaria.append(horas.replace('CH:', ''))
+
+    for remover in lista_Temporaria:  
+        if 'horas' in remover:
+            lista_Completa.append(remover.replace('horas', ''))
+
+    Carga_Horaria = open(r"CargaHoraria.txt","w")
+    Carga_Horaria.writelines(lista_Completa)
+    Carga_Horaria.close()
+    
+def mostrar_Todas_Disciplinas():
+    with open('Arquivo_TXT.txt', 'r', encoding='utf-8') as txt:
+        arquivoCompleto = txt.readlines()
+        txt.close()
+
+    lista_Temporaria = []
+
+    for disciplinas in range(0, len(arquivoCompleto)):
+        if 'Vagas Ocupadas:' in arquivoCompleto[disciplinas]:
+            if '-' in arquivoCompleto[disciplinas]:
+                troca = arquivoCompleto[disciplinas].replace('- ', '\n', 1)
+                lista_Temporaria.append(troca)
+
+    NomeDisciplica = open(r"NomesDisciplina.txt","w")
+    NomeDisciplica.writelines(lista_Temporaria)
+    NomeDisciplica.close()
+
+    try:
+        with open('NomesDisciplina.txt', 'r') as fr:
+            lines = fr.readlines()
+            with open('NomesDisciplina.txt', 'w') as fw:
+                for line in lines:
+                    if line.find('Vagas Ocupadas:') == -1:
                         fw.write(line)
     except:
         print("Oops! existe um erro")
@@ -72,4 +118,24 @@ def quantidade_Vezes_Professores():
     for k, v in dicionario.items():
         print(k.replace('\n', '') , '\033[1;31m aparece:\033[m' , v,)
 
-mostrar_Todas_Disciplinas()
+def Nome_e_Disciplinas():
+    with open('NomesProfessores.txt', 'r', encoding='utf-8') as arquivo1:
+        professor = arquivo1.readlines()
+        arquivo1.close()
+
+    with open('NomesDisciplina.txt', 'r', encoding='utf-8') as arquivo2:
+        disciplina = arquivo2.readlines()
+        arquivo2.close()
+
+    juntar_Listas = list(zip(professor, disciplina))  
+
+    Lista_Final = defaultdict(list)
+    for k, v in juntar_Listas:
+        Lista_Final[k.strip()].append(v)
+    sorted(Lista_Final.items())
+    
+    for k, v in Lista_Final.items():
+        print(f'\n\033[1;31m{k}:\033[m ', end='')
+        for disciplina in v:
+            print(disciplina.strip('\n'), end=', ')
+Nome_e_Disciplinas()

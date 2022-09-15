@@ -1,24 +1,18 @@
-from collections import defaultdict
-import re
-def Nome_e_Disciplinas():
-    with open('NomesProfessores.txt', 'r', encoding='utf-8') as arquivo1:
-        professor = arquivo1.readlines()
-        arquivo1.close()
+def mostra_Carga_Horaria():
+    with open('Arquivo_TXT.txt', 'r', encoding='utf-8') as txt:
+        arquivoCompleto = txt.readlines()
+        txt.close()
 
-    with open('NomesDisciplina.txt', 'r', encoding='utf-8') as arquivo2:
-        disciplina = arquivo2.readlines()
-        arquivo2.close()
+    lista_Temporaria = []
+    lista_Completa = []
+    for horas in arquivoCompleto:
+        if 'CH:' in horas:
+            lista_Temporaria.append(horas.replace('CH:', ''))
 
-    juntar_Listas = list(zip(professor, disciplina))  
+    for remover in lista_Temporaria:  
+        if 'horas' in remover:
+            lista_Completa.append(remover.replace('horas', ''))
 
-    Lista_Final = defaultdict(list)
-    for k, v in juntar_Listas:
-        Lista_Final[k.strip()].append(v)
-    sorted(Lista_Final.items())
-    
-    for k, v in Lista_Final.items():
-        for disciplina in v:
-            print(disciplina)
-        
-        
-Nome_e_Disciplinas()
+    Carga_Horaria = open(r"CargaHoraria.txt","w")
+    Carga_Horaria.writelines(lista_Completa)
+    Carga_Horaria.close()
