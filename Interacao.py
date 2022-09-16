@@ -23,4 +23,4 @@ elif opção == 3:
 elif opção == 4:
     Opcao.Nome_e_Disciplinas()
 elif opção == 5:
-    Opcao.Nome_e_Disciplinas()
+    Opcao.Nome_e_Carga_Horaria()

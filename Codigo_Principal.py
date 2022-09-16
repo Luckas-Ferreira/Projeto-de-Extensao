@@ -6,6 +6,7 @@ class Arquivo:
         if os.path.exists('Arquivo_TXT.txt'):
             pass
         else:
+            print('\033[1;33m AGUARDE! \033[m')
             self.arquivo = arquivo
             arq_PDF = PyPDF2.PdfReader(self.arquivo, 'rb')
             paginas = len(arq_PDF.pages)
@@ -185,3 +186,4 @@ class Arquivo:
             print(f'Carga Horaria Total - {sum(numero)} Horas')
 
 Opcao = Arquivo('2022.1.pdf')
+Opcao.Nome_e_Disciplinas()
