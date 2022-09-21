@@ -1,4 +1,6 @@
 from collections import defaultdict
+import json
+
 with open('DadosSeparados/NomesProfessores.txt', 'r', encoding='utf-8') as arquivo1:
     professor = arquivo1.readlines()
     arquivo1.close()
@@ -18,6 +20,8 @@ with open('DadosSeparados/NomesCurso.txt',       'r', encoding='utf-8') as arqui
 nome_disciplina = list(zip(professor, disciplina))
 nome_horas      = list(zip(professor, horas))
 
+
+
 juntar = list(zip(nome_disciplina, horas))
 
 Lista_Final = defaultdict(list)
@@ -30,7 +34,32 @@ for k, v in nome_horas:
     Lista_horas[k].append(v)
 sorted(Lista_horas.items())
 
-c = defaultdict(list)
-for k, v in Lista_Final.items():
-    c[k] = Lista_horas.keys()
-    print(c)
+Lista_curso = defaultdict(list)
+for k, v in nome_horas:
+    Lista_horas[k].append(v)
+sorted(Lista_horas.items())
+
+
+lfv = {}
+
+for k, v in enumerate(Lista_Final):
+    
+    d = Lista_Final[v]
+    h = Lista_horas[v]
+    lfv[v] = {}
+    lfv[v]["disciplinas"] = d
+    lfv[v]['horas'] = h
+
+print(type(Curso))
+temporaria      = list(map(list, lfv.items()))
+curso_nome      = list(zip(Curso, temporaria))
+print(curso_nome)
+
+
+'''txtJson = json.dumps(lfv)
+
+arquivoJson = open(r"DadosSeparados/ArquivoJson.json","w")
+arquivoJson.writelines(txtJson)
+
+arquivoJson.close()'''
+
