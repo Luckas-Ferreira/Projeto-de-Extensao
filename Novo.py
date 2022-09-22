@@ -31,7 +31,7 @@ Lista_horas = defaultdict(list)
 for k, v in nome_horas:
     Lista_horas[k].append(v)
 sorted(Lista_horas.items())
-'''
+
 lfv = {}
 
 for k, v in enumerate(Lista_Final):
@@ -46,7 +46,7 @@ txtJson = json.dumps(lfv)
 
 arquivoJson = open(r"DadosSeparados/ArquivoJson.json","w")
 arquivoJson.writelines(txtJson)
-arquivoJson.close()'''
+arquivoJson.close()
 
 
 with open ('Arquivo_TXT.txt', 'r') as arquivo:
@@ -71,15 +71,16 @@ for linha in range(len(NomeCurso1)):
 
 
 
-lfv = {}
 teste = {}
-transf = str(lista_Completa)
+transf = lista_Completa
 
 for linha in range(len(NomeCurso)):
     if 'Semestre' in NomeCurso[linha]:
-        teste[linha] = {}
-        for linha2 in lista_Completa:
-            print(linha2)
+        for linha2 in transf:
+            if linha2.strip() in NomeCurso[linha]:
+                teste[linha2]
+            
+print(teste)
 
 
 '''d = Lista_Final[v]
