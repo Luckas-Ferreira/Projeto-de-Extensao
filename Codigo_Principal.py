@@ -15,6 +15,7 @@ for line in range(0, len(arquivo_TXT)):
         else:
             pass
             '''lista_Temporaria["Curso"] = arquivo_TXT[line]'''
+            
     print(lista_Temporaria)
         
     lista_Temporaria2 = []
