@@ -2,22 +2,20 @@ with open('Arquivo_TXT.txt', 'r', encoding='utf-8') as txt:
     arquivo_TXT = txt.readlines()
     txt.close()
     
-
+lista_Temporaria = []
 for line in range(0, len(arquivo_TXT)):
-    lista_Temporaria = {}
     if 'Presencial' in arquivo_TXT[line]:
         #Adicionar o nome do curso ao dicionário 
-        example = {'Administração': []}
-        
-        if 'Página' in arquivo_TXT[line]:
+        lista_Temporaria.append(arquivo_TXT[line])
+        '''if 'Página' in arquivo_TXT[line]:
             troca = arquivo_Temporario[alterar].replace('Página', '\n')
-            lista_Temporaria["Curso"] = troca
+            print(troca)
         else:
-            pass
-            '''lista_Temporaria["Curso"] = arquivo_TXT[line]'''
+            pass'''
+        '''lista_Temporaria["Curso"] = arquivo_TXT[line]'''''
             
-    print(lista_Temporaria)
-        
+
+    print(lista_Temporaria) 
     lista_Temporaria2 = []
     if 'Vagas Oferecidas' in arquivo_TXT[line]:
         lista_Temporaria2.append(lista_Temporaria)
