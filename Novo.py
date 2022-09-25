@@ -33,8 +33,8 @@ for k, v in nome_horas:
 sorted(Lista_horas.items())
 
 lfv = {}
-
-for k, v in enumerate(Lista_Final):
+print(Lista_horas)
+'''for k, v in enumerate(Lista_Final):
     
     d = Lista_Final[v]
     h = Lista_horas[v]
@@ -80,8 +80,8 @@ for linha in range(len(NomeCurso)):
             if linha2.strip() in NomeCurso[linha]:
                 teste[linha2]
             
-print(teste)
 
+'''
 
 '''d = Lista_Final[v]
 h = Lista_horas[v]

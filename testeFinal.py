@@ -1,64 +1,42 @@
+from collections import OrderedDict
 with open('Arquivo_TXT.txt', 'r', encoding='utf-8') as txt:
     arquivo_TXT = txt.readlines()
     txt.close()
 
-lista_Temporaria = []
-dicio = {}
+Professores, Curso, Disciplina, Horas = []
+
 for linha in range(len(arquivo_TXT)):
+    
+    #Encontrar todos os cursos.
     if 'Semestre' in arquivo_TXT[linha]:
-        split = arquivo_TXT[linha].split('-')
-        lista_Temporaria.append(split[1])
-        print(split[1])
+        curso = arquivo_TXT[linha].strip().split('-')
+        Curso.append(curso[1])
 
+    #Encontrar todos os professores.
     if 'Vagas Oferecidas' in arquivo_TXT[linha]:
-        prof = arquivo_TXT[linha - 1]
+        prof = arquivo_TXT[linha - 1].replace('\n', '')
+        
         if 'Página' in prof:
-            trocar = prof.replace('Página', '-')
+            trocar = prof.replace('Página', '-').replace('\n', '')
             separar = trocar.split('-')
-            separar[1]
+            #print(separar[1])
+            Professores.append(separar[1])
         else:
-            print(prof)
+            #print(prof)
+            Professores.append(prof)
 
-    '''if 'Vagas Ocupadas:' in arquivo_TXT[linha]:'''
+    #Encontrar todas as disciplinas.
+    if 'Vagas Ocupadas:' in arquivo_TXT[linha]:
+        disciplina = arquivo_TXT[linha].replace('\n', '').split('-')
+        #print(disciplina[1].strip())
+        Disciplina.append(disciplina[1].strip())
 
+    #Encontrar carga horaria.
+    if 'CH:' in arquivo_TXT[linha]:
+        horas = arquivo_TXT[linha].replace('CH:', '').split()
+        #print(horas[0])
+        Horas.append(horas[0])
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-'''NomesCurso = open(r"DadosSeparados/NomesCurso.txt","w")
-NomesCurso.writelines(lista_Temporaria)
-NomesCurso.close()
-with open ('DadosSeparados/NomesCurso.txt', 'r') as arquivo:
-    NomeCurso1 = arquivo.readlines()
-    arquivo.close()
-
-lista_Completa = []
-for linha in range(len(NomeCurso1)):
-    if 'Semestre' in NomeCurso1[linha -1]:
-        lista_Completa.append(NomeCurso1[linha])
-NomesCurso = open(r"DadosSeparados/NomesCurso.txt","w")
-NomesCurso.writelines(lista_Completa)
-NomesCurso.close()'''
+nome_disciplina = list(zip(Professores, Disciplina))
+lorem = list(zip(nome_disciplina, Horas))
+print(lorem)
