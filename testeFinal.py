@@ -3,7 +3,10 @@ with open('Arquivo_TXT.txt', 'r', encoding='utf-8') as txt:
     arquivo_TXT = txt.readlines()
     txt.close()
 
-Professores, Curso, Disciplina, Horas = []
+Professores = []
+Curso       = []
+Disciplina  = []
+Horas       = []
 
 for linha in range(len(arquivo_TXT)):
     
