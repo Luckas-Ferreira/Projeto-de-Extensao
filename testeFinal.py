@@ -16,14 +16,7 @@ def CCurso(Dados, arquivo_TXT, linha):
         return Dados, curso
     return False
 
-for linha in range(len(arquivo_TXT)):
-    #Encontrar todos os cursos.
-    DadosCurso = CCurso(Dados, arquivo_TXT, linha)
-    if DadosCurso != False:
-        Dados = DadosCurso[0]
-        curso = DadosCurso[1]
-
-    #Encontrar todos os professores.
+def DDiciplina(Dados, arquivo_TXT, linha):
     if 'Vagas Oferecidas' in arquivo_TXT[linha]:
         prof = arquivo_TXT[linha - 1].replace('\n', '')
         professor = None
@@ -31,7 +24,6 @@ for linha in range(len(arquivo_TXT)):
             trocar = prof.replace('Página', '-').replace('\n', '')
             separar = trocar.split('-')
             professor = separar[1]
-            
         else:
             professor = prof
         if professor != None:
@@ -40,6 +32,21 @@ for linha in range(len(arquivo_TXT)):
             except:
                 Dados['Curso'][curso[1]]['Professores'][professor] = {}
                 Dados['Curso'][curso[1]]['Professores'][professor]['Disciplinas'] = {}
+        return Dados, curso
+    return False
+    
+for linha in range(len(arquivo_TXT)):
+    #Encontrar todos os cursos.
+    DadosCurso = CCurso(Dados, arquivo_TXT, linha)
+    if DadosCurso != False:
+        Dados = DadosCurso[0]
+        curso = DadosCurso[1]
+
+    #Encontrar todos os professores.
+    DadosDiciplina = DDiciplina(Dados, arquivo_TXT, linha)
+    if DadosDiciplina != False:
+        Dados = DadosCurso[0]
+        curso = DadosCurso[1]
 
     #Encontrar todas as disciplinas.
     if 'Vagas Ocupadas:' in arquivo_TXT[linha]:
