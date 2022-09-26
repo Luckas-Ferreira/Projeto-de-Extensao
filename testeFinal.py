@@ -17,24 +17,13 @@ def CCurso(Dados, arquivo_TXT, linha):
     return False
 
 def DDiciplina(Dados, arquivo_TXT, linha):
-    if 'Vagas Oferecidas' in arquivo_TXT[linha]:
-        prof = arquivo_TXT[linha - 1].replace('\n', '')
-        professor = None
-        if 'Página' in prof:
-            trocar = prof.replace('Página', '-').replace('\n', '')
-            separar = trocar.split('-')
-            professor = separar[1]
-        else:
-            professor = prof
-        if professor != None:
-            try:
-                Temp = Dados['Curso'][curso[1]]['Professores'][professor]['Disciplinas']
-            except:
-                Dados['Curso'][curso[1]]['Professores'][professor] = {}
-                Dados['Curso'][curso[1]]['Professores'][professor]['Disciplinas'] = {}
-        return Dados, curso
+    if 'Vagas Ocupadas:' in arquivo_TXT[linha]:
+        disciplina = arquivo_TXT[linha].replace('\n', '').split('-')
+        DiciName = disciplina[1].strip()
+        Dados['Curso'][curso[1]]['Professores'][professor]['Disciplinas'][DiciName] = {}
+        return DiciName, professor
     return False
-    
+
 for linha in range(len(arquivo_TXT)):
     #Encontrar todos os cursos.
     DadosCurso = CCurso(Dados, arquivo_TXT, linha)
@@ -43,17 +32,29 @@ for linha in range(len(arquivo_TXT)):
         curso = DadosCurso[1]
 
     #Encontrar todos os professores.
-    DadosDiciplina = DDiciplina(Dados, arquivo_TXT, linha)
-    if DadosDiciplina != False:
-        Dados = DadosCurso[0]
-        curso = DadosCurso[1]
+    if 'Vagas Oferecidas' in arquivo_TXT[linha]:
+        prof = arquivo_TXT[linha - 1].replace('\n', '')
+        professor = None
+        if 'Página' in prof:
+            trocar = prof.replace('Página', '-').replace('\n', '')
+            separar = trocar.split('-')
+            professor = separar[1]
+            
+        else:
+            professor = prof
+        if professor != None:
+            try:
+                Temp = Dados['Curso'][curso[1]]['Professores'][professor]['Disciplinas']
+            except:
+                Dados['Curso'][curso[1]]['Professores'][professor] = {}
+                Dados['Curso'][curso[1]]['Professores'][professor]['Disciplinas'] = {}
 
     #Encontrar todas as disciplinas.
-    if 'Vagas Ocupadas:' in arquivo_TXT[linha]:
-        disciplina = arquivo_TXT[linha].replace('\n', '').split('-')
-        DiciName = disciplina[1].strip()
-        Dados['Curso'][curso[1]]['Professores'][professor]['Disciplinas'][DiciName] = {}
-        
+    DadosDiciplina = DDiciplina(Dados, arquivo_TXT, linha)
+    if DadosDiciplina != False:
+        DiciName = DadosDiciplina[0]
+        professor = DadosDiciplina[1]
+
     #Encontrar carga horaria.
     if 'CH:' in arquivo_TXT[linha]:
         horas = arquivo_TXT[linha].replace('CH:', '').split()
