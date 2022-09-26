@@ -1,4 +1,5 @@
 import json
+
 with open('Arquivo_TXT.txt', 'r', encoding='utf-8') as txt:
     arquivo_TXT = txt.readlines()
     txt.close()
@@ -75,4 +76,8 @@ for linha in range(len(arquivo_TXT)):
     if DadosHorario != False:
         hora = DadosHorario[0]
 
-print(json.dumps(Dados))
+#Salvar arquivo.json
+DadosJson = json.dumps(Dados)
+arquivoJson = open(r"ArquivoJson.json","w")
+arquivoJson.writelines(DadosJson)
+arquivoJson.close()
