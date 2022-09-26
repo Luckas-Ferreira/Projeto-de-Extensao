@@ -1,4 +1,5 @@
-import json
+import json, ConverterArquivo
+Converter = ConverterArquivo.Arquivo('2022.1.pdf')
 
 with open('Arquivo_TXT.txt', 'r', encoding='utf-8') as txt:
     arquivo_TXT = txt.readlines()
