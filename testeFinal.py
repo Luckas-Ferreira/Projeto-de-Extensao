@@ -17,7 +17,6 @@ def CCurso(Dados, arquivo_TXT, linha):
     return False
 
 for linha in range(len(arquivo_TXT)):
-    
     #Encontrar todos os cursos.
     DadosCurso = CCurso(Dados, arquivo_TXT, linha)
     if DadosCurso != False:
@@ -55,6 +54,3 @@ for linha in range(len(arquivo_TXT)):
 
 
 print(json.dumps(Dados))
-
-
-
