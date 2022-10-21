@@ -10,6 +10,8 @@
   "license": "ISC",
   "dependencies": {
     "bootstrap": "^5.2.2",
-    "pdf.js": "^0.1.0"
+    "pdf-to-text": "^0.0.7",
+    "pdf.js": "^0.1.0",
+    "pdfinfo": "^0.0.3"
   }
 }
