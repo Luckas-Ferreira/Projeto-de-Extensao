@@ -82,3 +82,4 @@ DadosJson = json.dumps(Dados)
 arquivoJson = open(r"ArquivoJson.json","w")
 arquivoJson.writelines(DadosJson)
 arquivoJson.close()
+
