@@ -11,11 +11,11 @@
           <div class="col-md-4">
               <div class="input-group">
                   <div class="input-group-prepend">
-                      <span class="input-group-text upload" id="btnUpload">Upload</span>
+                    <span  class="input-group-text upload"  (click)="upload()"  id="btnUpload">Upload</span>
                   </div>
                   <div class="custom-file">
                       <form action="/api/upload" method="post" enctype="multipart/form-data">
-                          <input type="file" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
+                        <input  (change)="fileChange($event)"  type="file"  class="custom-file-input"  id="inputGroupFile01"  aria-describedby="inputGroupFileAddon01">
                       </form>
                       <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
                   </div>
