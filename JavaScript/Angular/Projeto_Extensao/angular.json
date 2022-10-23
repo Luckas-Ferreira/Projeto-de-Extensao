@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "Projeto_extensao": {
+    "Projeto_Extensao": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -64,10 +64,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "Projeto_extensao:build:production"
+              "browserTarget": "Projeto_Extensao:build:production"
             },
             "development": {
-              "browserTarget": "Projeto_extensao:build:development"
+              "browserTarget": "Projeto_Extensao:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -75,7 +75,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "Projeto_extensao:build"
+            "browserTarget": "Projeto_Extensao:build"
           }
         },
         "test": {
@@ -97,8 +97,5 @@
         }
       }
     }
-  },
-  "cli": {
-    "analytics": "ed56003f-02d0-4c9f-bdcf-e4fe7b4110b7"
   }
 }
