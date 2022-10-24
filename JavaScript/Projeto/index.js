@@ -21,7 +21,11 @@ app.get('/', (req, res) => {
 })
  
 app.post("/upload",upload.single("file"), (req, res) => {
-    res.send("Arquivo recebido!");
+    res.send("Arquivo recebido! ");
+    path = res.filename;
+    console.log(path)
+
+
 })
 app.listen(8080, () => {
     console.log('Servidor rodando!');

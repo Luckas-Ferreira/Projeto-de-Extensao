@@ -1,0 +1,6 @@
+<div id="elem">
+    <form method="post" enctype="multipart/form-data" action="/upload">
+        <input type="file" name="file" id="arquivo">
+        <input type="submit" value="upload">
+    </form>
+</div>
