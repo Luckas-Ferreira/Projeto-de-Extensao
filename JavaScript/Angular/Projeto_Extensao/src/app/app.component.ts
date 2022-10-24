@@ -1,36 +1,25 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-
+import { FileUploader } from 'ng2-file-upload';
+import { ToastrService } from 'ngx-toastr';
+const URL = 'http://localhost:8080/api/upload';
 @Component({
-    selector: 'app-root',
-    templateUrl: './app.component.html',
-    styleUrls: ['./app.component.css']
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css'],
 })
 export class AppComponent implements OnInit {
-
-    uploadedFiles: Array < File > ;
-
-    constructor(private http: HttpClient) {
-
-    }
-
-    ngOnInit() {
-
-    }
-
-    fileChange(element) {
-        this.uploadedFiles = element.target.files;
-    }
-
-    upload() {
-        let formData = new FormData();
-        for (var i = 0; i < this.uploadedFiles.length; i++) {
-            formData.append("uploads[]", this.uploadedFiles[i], this.uploadedFiles[i].name);
-        }
-        this.http.post('/api/upload', formData)
-            .subscribe((response) => {
-                console.log('response received is ', response);
-            })
-    }
-
+  public uploader: FileUploader = new FileUploader({
+    url: URL,
+    itemAlias: 'image',
+  });
+  constructor(private toastr: ToastrService) {}
+  ngOnInit() {
+    this.uploader.onAfterAddingFile = (file) => {
+      file.withCredentials = false;
+    };
+    this.uploader.onCompleteItem = (item: any, status: any) => {
+      console.log('Uploaded File Details:', item);
+      this.toastr.success('File successfully uploaded!');
+    };
+  }
 }
