@@ -1,42 +1,9 @@
-const { json } = require('express');
-const express = require('express');
-const app = express();
-const multer = require('multer');
-app.set('view engine', 'ejs');
-
-const storage = multer.diskStorage({
-    destination: function(req, file, cb){
-        cb(null, "uploads/")
-    },
-    filename: function(req, file, cb){
-        cb(null, file.originalname);
-    }
-})
-
-const upload = multer({storage})
-
-app.get('/', (req, res) => {
-    res.render("index");
-})
- 
-app.post("/upload",upload.single("file"), (req, res) => {
-    path = req.file.path;
-    console.log(path)
-    jsonstr = pdf_to_json(path, res)
-    console.log(jsonstr)
-})
-app.listen(8080, () => {
-    console.log('Servidor rodando!');
-});
-
-function pdf_to_json(pdf_path, res){
+export function pdf_to_json(pdf_path){
     var pdfUtil = require('pdf-to-text');
-
-    return pdfUtil.pdfToText(pdf_path, function(err, arquivo) {
-        
+    
+    pdfUtil.pdfToText(pdf_path, function(err, arquivo) {
         if (err) throw(err);
             let arquivo2 = arquivo.split('\n')
-
 
             Dados = {}
             Dados['Curso'] = {}
@@ -76,10 +43,8 @@ function pdf_to_json(pdf_path, res){
                     Dados['Curso'][curso[1]]['Professor'][professor]['Disciplinas'][disciplina] = horas
                 }
             }
-            var json1 = JSON.stringify(Dados);
-            res.json(json1)
-            return json1   
-    })
+
+            var json = JSON.stringify(Dados)
+            return json
+    });
 }
-
-
