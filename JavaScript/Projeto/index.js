@@ -77,7 +77,7 @@ function pdf_to_json(pdf_path, res){
                 }
             }
             var json1 = JSON.stringify(Dados);
-            res.json(json1)
+            res.json(Dados)
             return json1   
     })
 }
