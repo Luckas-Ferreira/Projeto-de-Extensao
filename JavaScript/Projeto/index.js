@@ -3,6 +3,7 @@ const express = require('express');
 const app = express();
 const multer = require('multer');
 app.set('view engine', 'ejs');
+app.use(express.static('./node_modules/'))
 
 const storage = multer.diskStorage({
     destination: function(req, file, cb){
