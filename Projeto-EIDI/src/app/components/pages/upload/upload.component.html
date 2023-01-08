@@ -1,0 +1,14 @@
+<h2>Faça o Upload do arquivo PDF</h2>
+
+<form (ngSubmit)="submit()" [formGroup]="uploadForm" #formDir="ngForm">
+    <div class="form-group">
+        <label for="upload"></label>
+        <input type="file" (change)="onFileSelected($event)" formControlName="file" required>
+    </div>
+    <div *ngIf="file.invalid && formDir.submitted" class="validation-error">
+        <p *ngIf="file.errors?.['required']">O arquivo PDF é obrigatório!</p>
+    </div>
+    <div class="enviar">
+        <input type="submit" value="enviar">
+    </div>
+</form>

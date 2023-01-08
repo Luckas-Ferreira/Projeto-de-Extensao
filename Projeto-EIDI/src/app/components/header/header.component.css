@@ -1,0 +1,57 @@
+nav {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.9em;
+    border-bottom: 1px solid #777;
+    background-color: #efefef;
+}
+
+.brand, .link {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.link {
+    margin-top: 0.7em;
+}
+.brand img  {
+    width: 40px;
+    margin-right: 0.5em;
+    margin-bottom: 0.6em;
+}
+
+.brand h2 {
+    transition: .4s;
+}
+
+.brand h2 span {
+    color: #3698f6;
+    transition: .4s;
+}
+
+.brand:hover > h2 {
+    color: #3698f6;
+}
+
+.brand:hover > h2 span {
+    color: #444;
+}
+
+.link li {
+    margin-right: 1em;
+    list-style: none;
+}
+
+.link a {
+    padding: 0.1em 0.3em;
+}
+
+#up a {
+    color: #3698f6;
+}
+
+#up a:hover {
+    background-color: #ffffff;
+    border-radius: 5px;
+}
