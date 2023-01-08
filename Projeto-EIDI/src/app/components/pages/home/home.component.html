@@ -1,6 +1,7 @@
 <div class="home-container">
     <h1>O que esta no json</h1>
-    <div *ngFor="let curso of cursos">
-        <h2>{{curso.Curso}}</h2>
+    <div *ngFor="let disciplina of disciplinas">
+        <h2>{{disciplina[0]}}</h2>
     </div>
 </div>
+<app-echarts-grafos></app-echarts-grafos>

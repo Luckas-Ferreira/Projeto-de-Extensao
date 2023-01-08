@@ -1,7 +1,8 @@
 export interface Curso {
     //Administra: string;
-    Curso: string;
-    //Professsor: string;
+    //Curso: string;
+    Disciplinas: [];
+    //Professores: string;
     //id: Number;
     //name: string;
     //type: string;

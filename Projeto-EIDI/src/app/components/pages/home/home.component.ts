@@ -11,6 +11,7 @@ import { environments } from 'src/environments/environments';
 export class HomeComponent {
   allCurso: Curso[] = []
   cursos: Curso[]  = []
+  disciplinas: Curso['Disciplinas'] = []
   
   constructor(private jsonService: JsonService){}
 
@@ -19,6 +20,7 @@ export class HomeComponent {
       const data = json
       this.allCurso = data
       this.cursos = data
+
       console.log(data)
     });
   };

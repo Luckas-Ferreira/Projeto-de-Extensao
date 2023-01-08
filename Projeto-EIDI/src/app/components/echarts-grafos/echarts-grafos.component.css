@@ -1,0 +1,8 @@
+#grafo {
+    width: 400px;
+    height: 400px;
+    border: 2px solid #444;
+    border-radius: 5px;
+    margin: 0 auto;
+    margin-bottom: 15px;
+}

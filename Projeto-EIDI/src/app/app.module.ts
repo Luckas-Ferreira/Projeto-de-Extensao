@@ -12,6 +12,9 @@ import { HomeComponent } from './components/pages/home/home.component';
 import { AboutComponent } from './components/pages/about/about.component';
 import { UploadComponent } from './components/pages/upload/upload.component';
 
+import { EchartsxModule } from 'echarts-for-angular';
+import { EchartsGrafosComponent } from './components/echarts-grafos/echarts-grafos.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -21,6 +24,7 @@ import { UploadComponent } from './components/pages/upload/upload.component';
     HomeComponent,
     AboutComponent,
     UploadComponent,
+    EchartsGrafosComponent,
   ],
   imports: [
     BrowserModule,
@@ -28,6 +32,7 @@ import { UploadComponent } from './components/pages/upload/upload.component';
     HttpClientModule,
     FormsModule, 
     ReactiveFormsModule,
+    EchartsxModule
   ],
   providers: [],
   bootstrap: [AppComponent]

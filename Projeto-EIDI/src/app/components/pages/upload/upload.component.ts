@@ -38,11 +38,12 @@ export class UploadComponent {
   }
 
   submit(){
-    if (this.uploadForm.invalid){
-      return;
-    }else{
-      //this.router.navigate(['/']);
+    if (this.uploadForm.valid){
       console.log("Arquivo enviado", this.uploadForm.value)
+    }else{
+      return;
+      //this.router.navigate(['/']);
+      //console.log("Arquivo enviado", this.uploadForm.value)
     }
 
   
