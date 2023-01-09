@@ -39,10 +39,11 @@ export class UploadComponent {
 
   submit(){
     if (this.uploadForm.valid){
+      this.router.navigate(['/']);
       console.log("Arquivo enviado", this.uploadForm.value)
     }else{
       return;
-      //this.router.navigate(['/']);
+      
       //console.log("Arquivo enviado", this.uploadForm.value)
     }
 
