@@ -1,7 +1,16 @@
 <div class="home-container">
-    <h1>O que esta no json</h1>
-    <div *ngFor="let disciplina of disciplinas">
-        <h2>{{disciplina[0]}}</h2>
+    <div *ngIf="cursos.length > 0; else noCursos">
+        <div class="cursos-container">
+            <div class="cursos" *ngFor="let curso of cursos">
+                <h2><strong>Curso:</strong> {{curso.Curso}}</h2>   
+                <h2><strong>Disciplina:</strong> {{curso.Disciplinas}}</h2>
+                <h2><strong>Professor:</strong> {{curso.Professores}}</h2>        
+            </div>
+            <!-- <app-echarts-grafos></app-echarts-grafos> -->
+        </div>
     </div>
+    <ng-template #noCursos>
+        <h1>Não há dados para aparição dos grafos</h1>
+        <a routerLink="/upload">Subir PDF</a>
+    </ng-template>
 </div>
-<app-echarts-grafos></app-echarts-grafos>

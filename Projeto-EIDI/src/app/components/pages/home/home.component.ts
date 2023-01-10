@@ -9,9 +9,12 @@ import { environments } from 'src/environments/environments';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent {
-  allCurso: Curso[] = []
+typeof(arg0: string) {
+throw new Error('Method not implemented.');
+}
+   allCurso: Curso[] = []
   cursos: Curso[]  = []
-  disciplinas: Curso['Disciplinas'] = []
+  //disciplinas: Curso['Disciplinas'] = []
   
   constructor(private jsonService: JsonService){}
 
